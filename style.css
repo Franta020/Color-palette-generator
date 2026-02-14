@@ -1,0 +1,93 @@
+/* BASIC RESET */
+@import url(https://fonts.googleapis.com/css?family=Inria+Serif:300,300italic,regular,italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inria Serif";
+}
+
+body {
+  background: linear-gradient(240deg, #f9f9ff, #a399ff);
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  display: flex;
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: stretch;
+  background-color: aliceblue;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  color: #150b6e;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 60%;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  background-color: black;
+  border-radius: 2px;
+}
+
+.container-palette {
+  display: flex;
+  height: 500px;
+}
+
+.color {
+  flex: 1 1 200px;
+  align-content: end;
+}
+.color-info {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.generate-btn {
+  background: linear-gradient(130deg, #f9f9ff, #a399ff);
+  color: #150b6e;
+  border: none;
+  padding: 20px;
+  font-size: 1.1rem;
+  font-family: "Inria Sans";
+  transition: background 0.4s ease;
+  cursor: pointer;
+}
+.generate-btn:hover {
+  background: linear-gradient(130deg, #e3e3ff, #7a6fe2);
+}
+.generate-btn:active {
+  background: linear-gradient(130deg, #f9f9ff, #a399ff);
+}
+
+.copy-btn {
+  color: #a399ff;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .container-palette {
+    flex-direction: column;
+  }
+  .color {
+    padding: 0;
+    align-content: center;
+  }
+}
