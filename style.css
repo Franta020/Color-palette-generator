@@ -17,6 +17,10 @@ body {
   display: flex;
 }
 
+.container-big {
+  width: 100%;
+}
+
 .container-main {
   display: flex;
   flex-direction: column;
@@ -31,6 +35,7 @@ h1 {
   padding: 10px 0;
   color: #150b6e;
   position: relative;
+  font-size: 2.5rem;
 }
 
 h1::after {
@@ -58,20 +63,21 @@ h1::after {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
+  font-size: 1.1rem;
 }
 
 .generate-btn {
-  background: linear-gradient(130deg, #f9f9ff, #a399ff);
+  background: linear-gradient(240deg, #f9f9ff, #a399ff);
   color: #150b6e;
   border: none;
   padding: 20px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-family: "Inria Sans";
   transition: background 0.4s ease;
   cursor: pointer;
 }
 .generate-btn:hover {
-  background: linear-gradient(130deg, #e3e3ff, #7a6fe2);
+  background: linear-gradient(240deg, rgb(207, 207, 248), #8074eb);
 }
 .generate-btn:active {
   background: linear-gradient(130deg, #f9f9ff, #a399ff);
@@ -89,5 +95,39 @@ h1::after {
   .color {
     padding: 0;
     align-content: center;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .color-info {
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  .generate-btn {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 900px) {
+  h1 {
+    font-size: 3rem;
+  }
+  .color-info {
+    font-size: 1.3rem;
+    padding-bottom: 20px;
+  }
+  .generate-btn {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 3.8rem;
+  }
+  .color-info {
+    font-size: 1.7rem;
+    padding-bottom: 20px;
+  }
+  .generate-btn {
+    font-size: 1.7rem;
   }
 }
