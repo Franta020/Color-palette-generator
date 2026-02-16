@@ -10,7 +10,7 @@
 }
 
 body {
-  background: linear-gradient(240deg, #f9f9ff, #a399ff);
+  background: linear-gradient(290deg, #fcfcfd, #c4bdff);
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -67,7 +67,7 @@ h1::after {
 }
 
 .generate-btn {
-  background: linear-gradient(240deg, #f9f9ff, #a399ff);
+  background: linear-gradient(240deg, #f4f4fd, #bab2ff);
   color: #150b6e;
   border: none;
   padding: 20px;
@@ -80,7 +80,7 @@ h1::after {
   background: linear-gradient(240deg, rgb(207, 207, 248), #8074eb);
 }
 .generate-btn:active {
-  background: linear-gradient(130deg, #f9f9ff, #a399ff);
+  background: linear-gradient(240deg, #fcfcfd, #c4bdff);
 }
 
 .copy-btn {
