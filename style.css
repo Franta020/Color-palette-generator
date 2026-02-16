@@ -21,6 +21,14 @@ body {
   width: 100%;
 }
 
+.palette-type {
+  width: 100%;
+}
+
+.palette-selector {
+  width: 100%;
+}
+
 .container-main {
   display: flex;
   flex-direction: column;

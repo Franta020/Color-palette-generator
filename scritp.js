@@ -30,3 +30,52 @@ function updateColorUI(colors) {
     colorHex.innerHTML = colors[index];
   });
 }
+
+/* HARMONIC PALETTE GENERATOR FROM CHATGPT */
+
+function generateHarmonyHex(baseHue, type = "analogous") {
+  const s = 70;
+  const l = 50;
+
+  const normalize = (h) => (h + 360) % 360;
+
+  const make = (hue, sat = s, light = l) =>
+    hslToHex(normalize(hue), sat, light);
+
+  switch (type) {
+    case "analogous":
+      return [
+        make(baseHue - 30),
+        make(baseHue),
+        make(baseHue + 30),
+        make(baseHue + 60),
+        make(baseHue - 60),
+      ];
+
+    case "complementary":
+      return [make(baseHue), make(baseHue + 180)];
+
+    case "triadic":
+      return [make(baseHue), make(baseHue + 120), make(baseHue + 240)];
+
+    case "tetradic":
+      return [
+        make(baseHue),
+        make(baseHue + 90),
+        make(baseHue + 180),
+        make(baseHue + 270),
+      ];
+
+    case "monochromatic":
+      return [
+        make(baseHue, s, 30),
+        make(baseHue, s, 40),
+        make(baseHue, s, 50),
+        make(baseHue, s, 60),
+        make(baseHue, s, 70),
+      ];
+
+    default:
+      return [];
+  }
+}
