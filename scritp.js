@@ -38,14 +38,18 @@ paletteContainer.on("click", (e) => {
 });
 
 function showCopySucces(el) {
+  resetCopyButtons();
+  el.classList.remove("far", "fa-copy");
+  el.classList.add("fa-solid", "fa-check");
+  el.style.color = "green";
+}
+
+function resetCopyButtons() {
   copyButton.forEach((element) => {
     element.classList.remove("fa-solid", "fa-check");
     element.classList.add("far", "fa-copy");
     element.style.color = "grey";
   });
-  el.classList.remove("far", "fa-copy");
-  el.classList.add("fa-solid", "fa-check");
-  el.style.color = "green";
 }
 
 function udatePalette(selection) {
@@ -67,6 +71,7 @@ function udatePalette(selection) {
 }
 
 function generatePalette() {
+  resetCopyButtons();
   let optionSelected = $("#palette-selector").val();
   const baseHue = Math.floor(Math.random() * 360);
   const colors = generateHarmonyHex(baseHue, optionSelected);
