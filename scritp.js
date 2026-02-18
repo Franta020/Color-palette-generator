@@ -18,7 +18,18 @@ paletteContainer.on("click", (e) => {
     navigator.clipboard
       .writeText(hexValue)
       .then(() => {
-        showCopySucces(e);
+        showCopySucces(e.target);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else if (e.target.classList.contains("color")) {
+    const hexValue =
+      e.target.nextElementSibling.querySelector(".color-value").innerHTML;
+    navigator.clipboard
+      .writeText(hexValue)
+      .then(() => {
+        showCopySucces(e.target.querySelector(".copy-btn"));
       })
       .catch((err) => {
         console.log(err);
@@ -32,9 +43,9 @@ function showCopySucces(el) {
     element.classList.add("far", "fa-copy");
     element.style.color = "grey";
   });
-  el.target.classList.remove("far", "fa-copy");
-  el.target.classList.add("fa-solid", "fa-check");
-  el.target.style.color = "green";
+  el.classList.remove("far", "fa-copy");
+  el.classList.add("fa-solid", "fa-check");
+  el.style.color = "green";
 }
 
 function udatePalette(selection) {
