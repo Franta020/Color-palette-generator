@@ -1,33 +1,82 @@
 const generateButton = $(".generate-btn");
-const color = document.querySelectorAll(".color");
+const colorUI = document.querySelectorAll(".color");
 const colorValue = Array.from($(".color-value"));
-const copyButton = $(".copy-btn");
-const palleteContainer = $(".palette-container");
+const copyButton = Array.from($(".copy-btn"));
+const paletteContainer = $(".container-palette");
 
+$(document).ready(generatePalette);
 generateButton.on("click", generatePalette);
 
-function generatePalette() {
-  const colors = [];
-  for (let i = 0; i < 5; i++) {
-    colors.push(generateRandomColor());
+$("#palette-selector").on("change", function (event) {
+  generatePalette();
+});
+
+paletteContainer.on("click", (e) => {
+  if (e.target.classList.contains("copy-btn")) {
+    const hexValue = e.target.previousElementSibling.textContent;
+
+    navigator.clipboard
+      .writeText(hexValue)
+      .then(() => {
+        showCopySucces(e);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  updateColorUI(colors);
+});
+
+function showCopySucces(el) {
+  copyButton.forEach((element) => {
+    element.classList.remove("fa-solid", "fa-check");
+    element.classList.add("far", "fa-copy");
+    element.style.color = "grey";
+  });
+  el.target.classList.remove("far", "fa-copy");
+  el.target.classList.add("fa-solid", "fa-check");
+  el.target.style.color = "green";
 }
 
-function generateRandomColor() {
+function udatePalette(selection) {
+  colorUI.forEach((el) => el.classList.add("hidden"));
+
+  const visibleCount = {
+    analogous: 4,
+    complementary: 2,
+    triadic: 3,
+    tetradic: 4,
+    monochromatic: 5,
+  };
+
+  colorUI.forEach((el, index) => {
+    if (index < visibleCount[selection]) {
+      el.classList.remove("hidden");
+    }
+  });
+}
+
+function generatePalette() {
+  let optionSelected = $("#palette-selector").val();
+  const baseHue = Math.floor(Math.random() * 360);
+  const colors = generateHarmonyHex(baseHue, optionSelected);
+  udatePalette(optionSelected);
+  updateColorUI(colorUI, colors);
+}
+
+/* function generateRandomColor() {
   const symbols = "0123456789ABCDEF";
   let color = "#";
   for (let i = 0; i < 6; i++) {
     color += symbols[Math.floor(Math.random() * 16)];
   }
   return color;
-}
+} */
 
-function updateColorUI(colors) {
-  color.forEach((el, index) => {
-    el.style.background = colors[index];
+function updateColorUI(colorElements, colorValues) {
+  colorElements.forEach((el, index) => {
+    el.style.background = colorValues[index];
     const colorHex = el.querySelector(".color-value");
-    colorHex.innerHTML = colors[index];
+    if (colorHex) colorHex.innerHTML = colorValues[index];
   });
 }
 
@@ -78,4 +127,49 @@ function generateHarmonyHex(baseHue, type = "analogous") {
     default:
       return [];
   }
+}
+function hslToHex(h, s, l) {
+  s /= 100;
+  l /= 100;
+
+  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = l - c / 2;
+
+  let r = 0,
+    g = 0,
+    b = 0;
+
+  if (0 <= h && h < 60) {
+    r = c;
+    g = x;
+    b = 0;
+  } else if (60 <= h && h < 120) {
+    r = x;
+    g = c;
+    b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0;
+    g = c;
+    b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0;
+    g = x;
+    b = c;
+  } else if (240 <= h && h < 300) {
+    r = x;
+    g = 0;
+    b = c;
+  } else if (300 <= h && h < 360) {
+    r = c;
+    g = 0;
+    b = x;
+  }
+
+  const toHex = (value) =>
+    Math.round((value + m) * 255)
+      .toString(16)
+      .padStart(2, "0");
+
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }

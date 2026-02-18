@@ -96,6 +96,11 @@ h1::after {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+  overflow: hidden;
+}
+
 @media (max-width: 500px) {
   .container-palette {
     flex-direction: column;
